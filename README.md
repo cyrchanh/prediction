@@ -40,7 +40,7 @@ evidence in itself.
 
 ## Repository structure
 
-\`\`\`
+```
 .
 ├── src/
 │   ├── models.py        # MLP architecture (shared across all experiments)
@@ -54,16 +54,16 @@ evidence in itself.
 ├── results/
 │   └── exp2_hit_rate.csv   # produced by exp2
 └── data/                     # gitignored — MNIST download cache
-\`\`\`
+```
 
 ## Setup
 
-\`\`\`bash
+```
 python -m venv .venv
 source .venv/bin/activate
 pip install -e path/to/iewc      # third-party Fisher-estimator package (see Dependencies)
 pip install torch torchvision scipy
-\`\`\`
+```
 
 ## The three experiments
 
@@ -73,9 +73,9 @@ Confirms the `iewc` package's three importance estimators (`ef`, `ewc_dr`,
 `ief_diag`) run correctly on a tiny 4-sample toy dataset, before trusting the
 package on any real data.
 
-\`\`\`bash
+```
 python experiments/exp0_iewc_toy_sanity_check.py
-\`\`\`
+```
 
 **Expected output:** `ewc_dr` total importance should be roughly an order of
 magnitude larger than `ef`'s (confirms the logit-reversal correction from
@@ -89,9 +89,9 @@ Fisher-based conflict signal in both directions, predicts which ordering is
 safer, then actually trains both orderings and checks whether the prediction
 was correct.
 
-\`\`\`bash
+```
 python experiments/exp1_single_pair.py
-\`\`\`
+```
 
 **Important note on this script's history:** the first version of this
 experiment computed each task's Fisher matrix from an **independently
@@ -122,9 +122,9 @@ the proportion of pairs where the predicted safer ordering matched the
 actual safer ordering, plus a binomial significance test against the 50%
 chance baseline.
 
-\`\`\`bash
+```
 python experiments/exp2_multi_pair_validation.py
-\`\`\`
+```
 
 **Output:** `results/exp2_hit_rate.csv` (per-pair breakdown) and a printed
 summary (`hit_rate`, `p-value`).
